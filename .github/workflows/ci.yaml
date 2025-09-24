@@ -84,7 +84,10 @@ jobs:
     - name: Update tag in Helm chart
       run: |
         sed -i 's/tag: .*/tag: "${{github.run_id}}"/' helm/go-web-app-chart/values.yaml
-
+    - name: Pull latest changes
+      run: git pull origin main
+    - name: Push changes
+      run: git push origin main
     - name: Commit and push changes
       run: |
         git config --global user.email "hartsi.jaan@gmail.com"
